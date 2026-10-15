@@ -1,0 +1,22 @@
+{
+  "stranger_art": {
+    "directUrl": "https://i.ibb.co/ymX3jrB8/Untitled39-20261012170924.png",
+    "localPath": "/src/assets/stranger/stranger_art.png"
+  },
+  "stranger_run": {
+    "directUrl": "https://i.ibb.co/QF20xR2t/Untitled39-20261012170848.png",
+    "localPath": "/src/assets/stranger/stranger_run.png"
+  },
+  "stranger_jump": {
+    "directUrl": "https://i.ibb.co/gMyZQ9FM/Untitled39-20261012170852.png",
+    "localPath": "/src/assets/stranger/stranger_jump.png"
+  },
+  "stranger_kidnapped": {
+    "directUrl": "https://i.ibb.co/FLLgmQTh/Untitled39-20261012170838.png",
+    "localPath": "/src/assets/stranger/stranger_kidnapped.png"
+  },
+  "stranger_walk_tree": {
+    "directUrl": "https://i.ibb.co/dwSGftgX/file-00000000e30082109b16cfe70d1032e5.png",
+    "localPath": "/src/assets/stranger/stranger_walk_tree.png"
+  }
+}
