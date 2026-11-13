@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Emma\'s Jealous Dash</string>
-    <string name="title_activity_main">Emma\'s Jealous Dash</string>
+    <string name="app_name">Emma\'s Jealous Runner</string>
+    <string name="title_activity_main">Emma\'s Jealous Runner</string>
     <string name="package_name">com.jadepinker.emmasjealousdash</string>
     <string name="custom_url_scheme">com.jadepinker.emmasjealousdash</string>
 </resources>

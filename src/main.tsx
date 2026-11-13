@@ -22,7 +22,7 @@ class AppErrorBoundary extends React.Component<{ children: React.ReactNode }, Er
     if (this.state.hasError) {
       return (
         <div className="min-h-screen w-full bg-slate-950 text-white flex flex-col items-center justify-center p-6 text-center font-sans">
-          <h1 className="text-xl font-black text-rose-400 mb-2">Emma&apos;s Jealous Dash</h1>
+          <h1 className="text-xl font-black text-rose-400 mb-2">Emma&apos;s Jealous Runner</h1>
           <p className="text-xs text-slate-300 max-w-sm mb-4">
             Something went wrong while loading the game ({this.state.errorMessage}).
           </p>

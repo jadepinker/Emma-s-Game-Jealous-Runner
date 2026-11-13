@@ -598,7 +598,7 @@ export const RunnerCanvas: React.FC<RunnerCanvasProps> = ({
             Please rotate your device horizontally to Landscape Mode for the intended wide 2D sprint view!
           </p>
           <span className="text-[11px] font-mono text-purple-400 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-500/30">
-            Emma's Jealous Dash
+            Emma's Jealous Runner
           </span>
         </div>
       )}

@@ -25,6 +25,7 @@ import { CastCharacterSprite } from './components/StoryCharacters';
 import { soundManager } from './audio/soundManager';
 import { authService } from './utils/authService';
 import { lobbyService } from './utils/lobbyService';
+import gameLogoImg from './assets/game_logo.png';
 
 const DEFAULT_UPGRADES: UpgradeLevels = {
   magnetDuration: 1,
@@ -310,10 +311,12 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Clean Game Title */}
-              <h1 className="text-xl sm:text-2xl md:text-5xl font-black tracking-tight text-white mb-2.5 md:mb-6 drop-shadow-[0_4px_20px_rgba(244,63,94,0.6)]">
-                Emma's <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-pink-400 to-purple-400">Jealous Dash</span>
-              </h1>
+              {/* Custom Logo Title Image */}
+              <img
+                src={gameLogoImg}
+                alt="Emma's Jealous Runner"
+                className="w-44 sm:w-64 md:w-96 max-h-24 sm:max-h-32 md:max-h-44 h-auto object-contain mb-2 md:mb-4 drop-shadow-[0_6px_28px_rgba(225,29,72,0.65)] select-none pointer-events-none"
+              />
 
               {/* PRIMARY ACTION BUTTONS */}
               <div className="w-full max-w-[260px] md:max-w-sm flex flex-col gap-2 md:gap-3">

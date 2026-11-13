@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.jadepinker.emmasjealousdash',
-  appName: "Emma's Jealous Dash",
+  appName: "Emma's Jealous Runner",
   webDir: 'dist',
   server: {
     androidScheme: 'https',
