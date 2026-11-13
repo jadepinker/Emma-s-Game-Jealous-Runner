@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+html, body, #root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+@keyframes emma-bow-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-2px, -1px) rotate(-1.5deg); }
+  30% { transform: translate(2px, 1px) rotate(1.5deg); }
+  45% { transform: translate(-2px, 0px) rotate(-1deg); }
+  60% { transform: translate(2px, -1px) rotate(1.2deg); }
+  75% { transform: translate(-1px, 1px) rotate(-0.8deg); }
+}
+
+@keyframes bubble-shocked-shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1.5px, -1px); }
+  80% { transform: translate(1.5px, 1px); }
+}
+
+@keyframes bubble-screaming-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  12% { transform: translate(-5px, -3px) rotate(-1.2deg) scale(1.015); }
+  25% { transform: translate(6px, 2px) rotate(1.3deg) scale(0.995); }
+  37% { transform: translate(-6px, 3px) rotate(-1deg) scale(1.02); }
+  50% { transform: translate(5px, -4px) rotate(1.1deg) scale(1.01); }
+  62% { transform: translate(-4px, 2px) rotate(-1.4deg) scale(0.99); }
+  75% { transform: translate(6px, -2px) rotate(0.9deg) scale(1.015); }
+  87% { transform: translate(-3px, -3px) rotate(-0.8deg) scale(1); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-12px) translateX(6px); }
+}
+
+@keyframes twinkle-star {
+  0%, 100% { opacity: 0.25; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.animate-emma-bow-shake {
+  animation: emma-bow-shake 0.36s ease-in-out infinite;
+  transform-origin: 50% 22%;
+}
+
+.animate-bubble-shocked {
+  animation: bubble-shocked-shake 0.16s linear infinite;
+}
+
+.animate-bubble-screaming {
+  animation: bubble-screaming-shake 0.14s linear infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle-star 3.2s ease-in-out infinite;
+}
+
+/* Jagged scream speech bubble border silhouette */
+.scream-bubble-jagged {
+  clip-path: polygon(
+    0% 10%, 4% 0%, 9% 8%, 15% 1%, 21% 7%, 28% 0%, 35% 8%, 42% 1%, 50% 7%, 58% 0%,
+    65% 8%, 72% 1%, 79% 7%, 85% 0%, 91% 8%, 96% 1%, 100% 11%,
+    98% 28%, 100% 45%, 97% 62%, 100% 80%, 97% 92%,
+    92% 100%, 85% 94%, 78% 100%, 71% 93%, 63% 100%, 55% 94%, 47% 100%,
+    39% 93%, 31% 100%, 23% 94%, 15% 100%, 8% 93%, 2% 100%, 0% 87%,
+    3% 70%, 0% 52%, 3% 34%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-emma-bow-shake,
+  .animate-bubble-shocked,
+  .animate-bubble-screaming,
+  .animate-float-slow,
+  .animate-twinkle {
+    animation: none !important;
+  }
+}

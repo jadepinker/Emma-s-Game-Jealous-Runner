@@ -1,0 +1,6 @@
+{
+  "name": "Emma's Awakening: Jealous Runner",
+  "description": "An interactive story cutscene and mechanics-heavy 3D-lane endless runner featuring shy Emma, her rivalry with White Lily Cookie, and her villainous dark sprint.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

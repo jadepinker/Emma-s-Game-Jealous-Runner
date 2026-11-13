@@ -1,0 +1,12 @@
+{
+	"appId": "com.jadepinker.emmasjealousdash",
+	"appName": "Emma's Jealous Dash",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	},
+	"android": {
+		"backgroundColor": "#020617",
+		"allowMixedContent": true
+	}
+}
