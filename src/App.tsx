@@ -39,13 +39,13 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState<GameScreen>('MENU');
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => authService.getCurrentUser());
   const [settings, setSettings] = useState<UserSettings>(() => {
-    const saved = localStorage.getItem('emma_runner_settings');
-    if (saved) {
-      try {
+    try {
+      const saved = localStorage.getItem('emma_runner_settings');
+      if (saved) {
         return { ...DEFAULT_USER_SETTINGS, ...JSON.parse(saved) };
-      } catch {
-        // fallback
       }
+    } catch {
+      // fallback
     }
     return DEFAULT_USER_SETTINGS;
   });
@@ -144,29 +144,33 @@ export default function App() {
 
   // Load persistence
   useEffect(() => {
-    const savedHighScore = localStorage.getItem('emma_runner_highscore');
-    if (savedHighScore) setHighScore(parseInt(savedHighScore, 10) || 0);
+    try {
+      const savedHighScore = localStorage.getItem('emma_runner_highscore');
+      if (savedHighScore) setHighScore(parseInt(savedHighScore, 10) || 0);
 
-    const savedCrystals = localStorage.getItem('emma_runner_crystals');
-    if (savedCrystals) setTotalCrystals(parseInt(savedCrystals, 10) || 0);
+      const savedCrystals = localStorage.getItem('emma_runner_crystals');
+      if (savedCrystals) setTotalCrystals(parseInt(savedCrystals, 10) || 0);
 
-    const savedLevels = localStorage.getItem('emma_runner_unlocked_levels');
-    if (savedLevels) {
-      try {
+      const savedLevels = localStorage.getItem('emma_runner_unlocked_levels');
+      if (savedLevels) {
         const parsed = JSON.parse(savedLevels);
         if (Array.isArray(parsed) && parsed.includes('story')) {
           setUnlockedLevels(parsed);
         }
-      } catch {
-        // fallback
       }
+    } catch {
+      // ignore storage errors
     }
   }, []);
 
   const handleUpdateSettings = (updater: (prev: UserSettings) => UserSettings) => {
     setSettings(prev => {
       const next = updater(prev);
-      localStorage.setItem('emma_runner_settings', JSON.stringify(next));
+      try {
+        localStorage.setItem('emma_runner_settings', JSON.stringify(next));
+      } catch {
+        // ignore
+      }
       setIsMuted(next.isMuted);
       return next;
     });
@@ -182,7 +186,11 @@ export default function App() {
     setUnlockedLevels(prev => {
       if (!prev.includes(diff)) {
         const updated = [...prev, diff];
-        localStorage.setItem('emma_runner_unlocked_levels', JSON.stringify(updated));
+        try {
+          localStorage.setItem('emma_runner_unlocked_levels', JSON.stringify(updated));
+        } catch {
+          // ignore
+        }
         return updated;
       }
       return prev;

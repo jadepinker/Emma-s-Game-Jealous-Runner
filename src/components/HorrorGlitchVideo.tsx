@@ -121,7 +121,7 @@ export const HorrorGlitchVideo: React.FC<HorrorGlitchVideoProps> = ({ onVideoEnd
         onEnded={onVideoEnd}
         className="w-full h-full object-cover"
       >
-        <source src="/story_video.mp4" type="video/mp4" />
+        <source src="./story_video.mp4" type="video/mp4" />
         <source src="https://cdn.videotourl.net/videos/56115728-b872-41c7-80a8-e51d05036dfc.mp4" type="video/mp4" />
       </video>
 

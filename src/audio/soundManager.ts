@@ -14,25 +14,48 @@ class SoundManager {
   private musicStep: number = 0;
   private isMusicPlaying: boolean = false;
 
+  private safeGetStorage(key: string): string | null {
+    try {
+      return typeof window !== 'undefined' && window.localStorage
+        ? window.localStorage.getItem(key)
+        : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private safeSetStorage(key: string, value: string) {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, value);
+      }
+    } catch {
+      // ignore storage restrictions
+    }
+  }
+
   constructor() {
-    // Check initial mute and volume state from localStorage
-    const savedMute = localStorage.getItem('emma_runner_muted');
+    // Check initial mute and volume state from localStorage safely
+    const savedMute = this.safeGetStorage('emma_runner_muted');
     if (savedMute !== null) {
       this.isMuted = savedMute === 'true';
     }
-    const savedBgm = localStorage.getItem('emma_runner_bgm');
+    const savedBgm = this.safeGetStorage('emma_runner_bgm');
     if (savedBgm !== null) {
-      this.bgmVolume = Math.max(0, Math.min(1, parseFloat(savedBgm)));
+      const parsed = parseFloat(savedBgm);
+      if (Number.isFinite(parsed)) this.bgmVolume = Math.max(0, Math.min(1, parsed));
     }
-    const savedSfx = localStorage.getItem('emma_runner_sfx');
+    const savedSfx = this.safeGetStorage('emma_runner_sfx');
     if (savedSfx !== null) {
-      this.sfxVolume = Math.max(0, Math.min(1, parseFloat(savedSfx)));
+      const parsed = parseFloat(savedSfx);
+      if (Number.isFinite(parsed)) this.sfxVolume = Math.max(0, Math.min(1, parsed));
     }
-    const savedVoice = localStorage.getItem('emma_runner_voice');
+    const savedVoice = this.safeGetStorage('emma_runner_voice');
     if (savedVoice !== null) {
-      this.voiceVolume = Math.max(0, Math.min(1, parseFloat(savedVoice)));
+      const parsed = parseFloat(savedVoice);
+      if (Number.isFinite(parsed)) this.voiceVolume = Math.max(0, Math.min(1, parsed));
     }
-    const savedVoiceEn = localStorage.getItem('emma_runner_voice_enabled');
+    const savedVoiceEn = this.safeGetStorage('emma_runner_voice_enabled');
     if (savedVoiceEn !== null) {
       this.voiceEnabled = savedVoiceEn === 'true';
     }
@@ -50,7 +73,7 @@ class SoundManager {
 
   public setMuted(muted: boolean): boolean {
     this.isMuted = muted;
-    localStorage.setItem('emma_runner_muted', String(this.isMuted));
+    this.safeSetStorage('emma_runner_muted', String(this.isMuted));
     if (this.isMuted) {
       if (this.isMusicPlaying) this.stopMusic();
       this.stopVoice();
@@ -68,7 +91,7 @@ class SoundManager {
 
   public setBgmVolume(val: number) {
     this.bgmVolume = Math.max(0, Math.min(1, val));
-    localStorage.setItem('emma_runner_bgm', String(this.bgmVolume));
+    this.safeSetStorage('emma_runner_bgm', String(this.bgmVolume));
   }
 
   public getBgmVolume(): number {
@@ -77,7 +100,7 @@ class SoundManager {
 
   public setSfxVolume(val: number) {
     this.sfxVolume = Math.max(0, Math.min(1, val));
-    localStorage.setItem('emma_runner_sfx', String(this.sfxVolume));
+    this.safeSetStorage('emma_runner_sfx', String(this.sfxVolume));
   }
 
   public getSfxVolume(): number {
@@ -86,7 +109,7 @@ class SoundManager {
 
   public setVoiceVolume(val: number) {
     this.voiceVolume = Math.max(0, Math.min(1, val));
-    localStorage.setItem('emma_runner_voice', String(this.voiceVolume));
+    this.safeSetStorage('emma_runner_voice', String(this.voiceVolume));
   }
 
   public getVoiceVolume(): number {
@@ -95,7 +118,7 @@ class SoundManager {
 
   public setVoiceEnabled(enabled: boolean) {
     this.voiceEnabled = enabled;
-    localStorage.setItem('emma_runner_voice_enabled', String(this.voiceEnabled));
+    this.safeSetStorage('emma_runner_voice_enabled', String(this.voiceEnabled));
     if (!enabled) this.stopVoice();
   }
 

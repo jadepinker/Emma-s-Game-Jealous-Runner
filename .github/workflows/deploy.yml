@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
   workflow_dispatch:
 
 permissions:
@@ -28,13 +29,20 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build site
         run: npm run build
 
+      - name: Prepare GitHub Pages SPA files
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
